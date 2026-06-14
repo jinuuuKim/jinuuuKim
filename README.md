@@ -102,7 +102,7 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 
 <p align="center">
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=jinuuuKim&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jinuuuKim&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
+  <img height="165" src="[https://github-readme-stats.vercel.app/api/top-langs/?username=jinuuuKim&layout=compact&theme=tokyonight&hide_border=true&langs_count=8](https://github-readme-stats.vercel.app/api/top-langs/?username=jinuuuKim&layout=compact&theme=tokyonight&hide_border=true&langs_count=8&hide=c%23)" />
 </p>
 
 ---
