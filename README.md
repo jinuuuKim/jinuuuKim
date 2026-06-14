@@ -5,9 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="mailto:<your-email>"><img src="https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white"/></a>
-  <a href="<your-blog-url>"><img src="https://img.shields.io/badge/Blog-000000?style=flat-square&logo=githubpages&logoColor=white"/></a>
-  <a href="<your-linkedin-url>"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
+  <a href="mailto:kkjjww1503@naver.com"><img src="https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white"/></a>
 </p>
 
 ---
@@ -64,15 +62,15 @@ AWS 위에 Terraform으로 구축한 멀티 리전(서울·오하이오) 기반�
 
 > 📐 실제 Terraform 코드베이스로부터 생성한 아키텍처 다이어그램을 README 상단에서 확인할 수 있습니다.
 
-🔗 **Repository**: [StockOps Infra](<your-repo-url>)
+🔗 **Repository**: [StockOps Infra]((https://github.com/jinuuuKim/Stockops-Infra))
 
 ---
 
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=<your-username>&show_icons=true&theme=default&hide_border=true" height="165"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=<your-username>&layout=compact&theme=default&hide_border=true" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=<jinuuuKim>&show_icons=true&theme=default&hide_border=true" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=<jinuuuKim>&layout=compact&theme=default&hide_border=true" height="165"/>
 </p>
 
 ---
