@@ -38,32 +38,29 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 
 ## 🛠️ Tech Stack
 
+**☁️ Infrastructure & DevOps** &nbsp;<sub>(Primary)</sub>
+
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=aws,terraform,kubernetes,docker,argocd,githubactions,grafana,prometheus,postgres,python,bash,linux&perline=6" />
+  <img src="https://skillicons.dev/icons?i=aws,azure,terraform,kubernetes,docker,githubactions,linux,windows&perline=8" />
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=for-the-badge&logo=argo&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Helm-0F1689?style=for-the-badge&logo=helm&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CloudFormation-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Karpenter-2C8EBB?style=for-the-badge&logo=amazonaws&logoColor=white"/>
 </p>
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Cloud / IaC</b></td>
-    <td>AWS &nbsp;·&nbsp; Terraform &nbsp;·&nbsp; Global Accelerator &nbsp;·&nbsp; Route53</td>
-  </tr>
-  <tr>
-    <td align="center"><b>Container</b></td>
-    <td>Kubernetes (EKS) &nbsp;·&nbsp; Docker &nbsp;·&nbsp; Helm &nbsp;·&nbsp; Karpenter</td>
-  </tr>
-  <tr>
-    <td align="center"><b>CI/CD</b></td>
-    <td>GitHub Actions (OIDC) &nbsp;·&nbsp; ArgoCD (GitOps)</td>
-  </tr>
-  <tr>
-    <td align="center"><b>Observability</b></td>
-    <td>Prometheus &nbsp;·&nbsp; Grafana</td>
-  </tr>
-  <tr>
-    <td align="center"><b>Data / Lang</b></td>
-    <td>PostgreSQL &nbsp;·&nbsp; Athena &nbsp;·&nbsp; Python &nbsp;·&nbsp; Bash</td>
-  </tr>
-</table>
+**📊 Monitoring & Database**
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=grafana,prometheus,mysql,postgres&perline=8" />
+</p>
+
+**💻 Development** &nbsp;<sub>(Secondary)</sub>
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=java,spring,py,flutter,dart&perline=8" />
+</p>
 
 ---
 
