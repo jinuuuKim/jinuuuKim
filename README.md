@@ -209,12 +209,13 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 
 ---
 
-## 📊 GitHub Stats
+## 🐍 Contribution Snake
 
-<p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=jinuuuKim&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jinuuuKim&layout=compact&theme=tokyonight&hide_border=true&langs_count=8&hide=c%23" />
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jinuuuKim/jinuuuKim/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/jinuuuKim/jinuuuKim/output/github-contribution-grid-snake.svg">
+  <img alt="contribution grid snake animation" src="https://raw.githubusercontent.com/jinuuuKim/jinuuuKim/output/github-contribution-grid-snake.svg" width="100%"/>
+</picture>
 
 ---
 
