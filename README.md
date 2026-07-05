@@ -94,20 +94,22 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
     </td>
   </tr>
   <tr>
+    <td align="center"><b>🤖&nbsp;AI/ML</b></td>
+    <td>
+      <img src="https://img.shields.io/badge/Amazon_Bedrock-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
+      <img src="https://img.shields.io/badge/pgvector-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+    </td>
+  </tr>
+  <tr>
     <td align="center"><b>🗄️&nbsp;Database</b></td>
     <td>
       <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
-      <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
     </td>
   </tr>
   <tr>
     <td align="center"><b>💻&nbsp;Dev</b></td>
     <td>
-      <img src="https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white"/>
-      <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
       <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
-      <img src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white"/>
-      <img src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white"/>
     </td>
   </tr>
 </table>
@@ -115,6 +117,51 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 ---
 
 ## 🚀 Featured Projects
+
+---
+
+### 🛡️ [cnapp-agentic](https://github.com/jun0601/cnapp-agentic) — Agentic AI 기반 멀티클라우드 CNAPP 보안 플랫폼
+
+<p>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Amazon_Bedrock-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white"/>
+  <img src="https://img.shields.io/badge/EKS-FF9900?style=flat-square&logo=amazoneks&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Karpenter-2C8EBB?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
+</p>
+
+> AWS(워크로드)·Azure(신원/Entra ID) 2개 클라우드의 보안 설정·취약점·신원 위험을 통합 스캔하고, **LLM 에이전트가 read-only API를 스스로 호출해 증거를 수집·판정**하는 CNAPP형 보안 플랫폼. 2인 협업 프로젝트.
+
+**아키텍처 핵심 설계**
+
+```
+[스캐너]  Security Hub·Prowler·Trivy·kube-bench (AWS) + Entra ID CIEM (Azure)
+              └─→ EventBridge → SQS → Lambda(OCSF-lite 정규화) → RDS(PostgreSQL+pgvector)
+                        │
+              Attack-Path 상관 엔진(R1~R5 규칙) — AWS 워크로드 침해 → Azure Entra 신원 탈취
+              크로스클라우드 공격 경로 그래프 자동 생성
+                        │
+              Agentic Engine (Bedrock Claude, tool use)
+              Orchestrator → Triage → Hypothesis → Evidence(실 API 자가 조사) → Reasoning
+                        │
+              RAG(pgvector 검색) → 한국어 위험 설명·권고안 생성
+                        │
+              Remediation(Step Functions HITL 승인) → 조치 실행 + 불변 감사(S3 Object Lock)
+```
+
+| 영역 | 구현 내용 |
+|------|-----------|
+| 🔍 **Multi-Cloud CNAPP** | CSPM·CIEM·워크로드 취약점·KSPM 통합 스캔(Security Hub/Prowler/Trivy/kube-bench + Azure Entra ID) → OCSF-lite 정규화·dedup |
+| 🕸️ **Attack-Path 상관분석** | 커스텀 상관 엔진으로 AWS→Azure 크로스클라우드 신원 탈취 공격 경로를 그래프로 자동 재구성 |
+| 🤖 **Agentic AI 엔진** | Bedrock Claude가 read-only API를 스스로 골라 호출(tool use)해 증거를 모으는 능동 조사 루프(챗봇이 아닌 에이전트) |
+| 📚 **RAG 설명 생성** | pgvector 기반 컨트롤 카탈로그 검색 + LLM으로 한국어 설명·권고 자동 생성 |
+| 🛠️ **HITL 자동조치** | Step Functions 승인 경로 + S3 Object Lock 불변 감사로그로 안전한 자동 조치(S3 공개차단·SG 회수·IAM 최소권한) |
+| 🧱 **Infra as Code** | Terraform 레이어드 구조(shared·karpenter·target·backend·console·monitoring) + Karpenter 스팟 오토스케일링 실증 + ArgoCD GitOps |
+
+**담당 영역**: 추론 엔진(Hypothesis·Reasoning·Orchestrator) · 워크로드/CIEM 스캐너(Trivy·kube-bench·Entra ID) · Attack-Path 상관 로직 · RAG 검색·답변 생성 · 운영 관측(Grafana·CloudWatch·Teams 알림) · Azure/Entra 테넌트 구축
 
 ---
 
