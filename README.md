@@ -11,6 +11,9 @@
 <!-- ===== 방문자 수 / 연락처 ===== -->
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=jinuuuKim&label=Profile%20views&color=26d0ce&style=flat-square" alt="profile views" />
+  <a href="https://jinuuukim.github.io/portfolio/">
+    <img src="https://img.shields.io/badge/Portfolio-jinuuukim.github.io-26D0CE?style=flat-square&logo=googlechrome&logoColor=white"/>
+  </a>
   <a href="mailto:kkjjww1503@naver.com">
     <img src="https://img.shields.io/badge/Email-kkjjww1503@naver.com-03C75A?style=flat-square&logo=naver&logoColor=white"/>
   </a>
