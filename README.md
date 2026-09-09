@@ -21,10 +21,6 @@
   </a>
 </p>
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=jinuuuKim&label=Profile+views&color=1a2980&style=flat-square" alt="profile views" />
-</p>
-
 ---
 
 ## 🧑‍💻 About Me
@@ -287,6 +283,19 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 | 키리스 인증 | 파이프라인·파드 인증에 **장기 액세스 키 0개** — GitHub OIDC · IRSA로 매번 임시 자격증명 발급 |
 
 🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/stockops/) · [Stockops-Infra](https://github.com/jinuuuKim/Stockops-Infra) · [Stockops-GitOps](https://github.com/jinuuuKim/Stockops-GitOps)
+
+---
+
+## 📊 GitHub
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"
+      srcset="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=jinuuuKim&theme=github_dark"/>
+    <img width="100%"
+      src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=jinuuuKim&theme=default"/>
+  </picture>
+</p>
 
 ---
 
