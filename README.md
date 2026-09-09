@@ -36,7 +36,7 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 - ☁️ AWS 위에서 **재현 가능하고(reproducible) 장애에 강한** 인프라를 코드로 정의합니다.
 - 🔐 IAM Access Key 없이 **OIDC + IRSA + KMS** 조합으로 Credential-less 보안을 구현합니다.
 - 🧩 단일 추천이 아닌 **트레이드오프 기반의 아키텍처 의사결정**을 지향합니다.
-- 📈 꾸준함이 실력이라 믿으며, 매일 커밋으로 성장 중입니다.
+- 📈 만든 것은 실제로 배포해 검증하고, 판단 근거를 문서로 남깁니다.
 
 ---
 
@@ -64,6 +64,7 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
       <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white"/>
       <img src="https://img.shields.io/badge/Helm-0F1689?style=flat-square&logo=helm&logoColor=white"/>
       <img src="https://img.shields.io/badge/Karpenter-2C8EBB?style=flat-square&logo=amazonaws&logoColor=white"/>
+      <img src="https://img.shields.io/badge/External_Secrets-5A31F4?style=flat-square&logo=kubernetes&logoColor=white"/>
     </td>
   </tr>
   <tr>
@@ -71,6 +72,7 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
     <td>
       <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
       <img src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Kustomize-326CE5?style=flat-square&logo=kubernetes&logoColor=white"/>
     </td>
   </tr>
   <tr>
@@ -94,6 +96,8 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
     <td>
       <img src="https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white"/>
       <img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white"/>
+      <img src="https://img.shields.io/badge/CloudWatch-FF4F8B?style=flat-square&logo=amazoncloudwatch&logoColor=white"/>
+      <img src="https://img.shields.io/badge/AWS_X--Ray-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
     </td>
   </tr>
   <tr>
@@ -107,12 +111,15 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
     <td align="center"><b>🗄️&nbsp;Database</b></td>
     <td>
       <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"/>
+      <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
     </td>
   </tr>
   <tr>
     <td align="center"><b>💻&nbsp;Dev</b></td>
     <td>
       <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white"/>
     </td>
   </tr>
 </table>
@@ -136,7 +143,9 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
   <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
 </p>
 
-> AWS(워크로드)·Azure(신원/Entra ID) 2개 클라우드의 보안 설정·취약점·신원 위험을 통합 스캔하고, **LLM 에이전트가 read-only API를 스스로 호출해 증거를 수집·판정**하는 CNAPP형 보안 플랫폼. 2인 협업 프로젝트.
+> AWS(워크로드)·Azure(신원/Entra ID) 2개 클라우드의 보안 설정·취약점·신원 위험을 통합 스캔하고, **LLM 에이전트가 read-only API를 스스로 호출해 증거를 수집·판정**하는 CNAPP형 보안 플랫폼.
+
+`2026.06~07 (5주)` · `2인` · 담당: 정규화 · 엔진 · 상관 · RAG · 관측
 
 **아키텍처 핵심 설계**
 
@@ -164,7 +173,17 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 | 🛠️ **HITL 자동조치** | Step Functions 승인 경로 + S3 Object Lock 불변 감사로그로 안전한 자동 조치(S3 공개차단·SG 회수·IAM 최소권한) |
 | 🧱 **Infra as Code** | Terraform 레이어드 구조(shared·karpenter·target·backend·console·monitoring) + Karpenter 스팟 오토스케일링 실증 + ArgoCD GitOps |
 
+**실 계정 검증 결과**
+
+| 지표 | 결과 |
+|------|------|
+| 통합 finding | 스캐너 6종 실 스캔 **432건**(open 32 · 준수 63 · 노이즈 억제 337) |
+| 공격 경로 | **3개** 도출 — 공개 S3 조치를 승인하자 실시간 소멸(3→1) |
+| AI 조사 | Triage 통과 24건 **전부 조사 완료**(미조사 0건), 1회 조사 약 100원 |
+
 **담당 영역**: 추론 엔진(Hypothesis·Reasoning·Orchestrator) · 워크로드/CIEM 스캐너(Trivy·kube-bench·Entra ID) · Attack-Path 상관 로직 · RAG 검색·답변 생성 · 운영 관측(Grafana·CloudWatch·Teams 알림) · Azure/Entra 테넌트 구축
+
+🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/cnapp/) · [데모 영상 (1분 30초)](https://youtu.be/YaPADbf3t94)
 
 ---
 
@@ -180,6 +199,8 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 </p>
 
 > K-Food 수출 기업 시나리오 기반의 AWS 멀티 리전 인프라. 서울(Primary) · 오하이오(DR) 2개 리전을 Terraform IaC로 전 구간 자동화.
+
+`2026.03~06 (3개월)` · `4인` · 담당: 인프라 설계·구축 · CI/CD
 
 **아키텍처 핵심 설계**
 
@@ -201,14 +222,22 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 | 영역 | 구현 내용 |
 |------|-----------|
 | 🌏 **Multi-Region IaC** | Terraform state를 `seoul / ohio / global / peering` 4개 레이어로 분리, KMS 암호화 S3 원격 백엔드 |
-| 🚢 **Kubernetes** | EKS v1.30 + Karpenter(Spot-preferred) + HPA 2티어 오토스케일링 — 정적 분리로 EKS 노드 약 40% 감소 |
+| 🚢 **Kubernetes** | EKS v1.30 + Karpenter(Spot-preferred) — 파드는 HPA, 노드는 Karpenter로 2단 오토스케일링 |
 | 🔄 **GitOps CI/CD** | GitHub Actions OIDC(키리스) → ECR 양 리전 직접 Push → ArgoCD 자동 Sync (Kustomize overlay) |
 | 🔐 **Credential-less 보안** | OIDC(GitHub Actions) + IRSA(Pod) + KMS(Terraform state) + ESO(Secrets Manager 1h 동기화) + WAF |
 | 📡 **IoT Pipeline** | IoT Core → SQS(실시간) / Kinesis Firehose → S3/GZIP(이력) → Athena 분석 이중 파이프라인 |
 | 🌐 **트래픽 분리** | 정적(CloudFront+S3) / 동적(Global Accelerator) 공존 구조로 엣지 캐시 최적화 |
 | 🗄️ **DB HA** | RDS PostgreSQL Multi-AZ(1차) + Cross-Region Read Replica(2차) 2단계 방어 |
 
-> 📐 Terraform 코드베이스 기반 아키텍처 다이어그램은 [Stockops-Infra](https://github.com/jinuuuKim/Stockops-Infra) README에서 확인할 수 있습니다.
+**검증 결과**
+
+| 지표 | 결과 |
+|------|------|
+| 운영 파드 | 정적·동적 분리로 **5개 → 3개**(40% 감축) |
+| State 재현 | 4개 State 전부 **삭제 후 재적용해 동일 구성 복원** |
+| 키리스 인증 | 파이프라인·파드 인증에 **장기 액세스 키 0개** — GitHub OIDC · IRSA로 매번 임시 자격증명 발급 |
+
+🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/stockops/) · [Stockops-Infra](https://github.com/jinuuuKim/Stockops-Infra) · [Stockops-GitOps](https://github.com/jinuuuKim/Stockops-GitOps)
 
 ---
 
