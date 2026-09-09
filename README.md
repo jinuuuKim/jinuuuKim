@@ -1,22 +1,28 @@
 <!-- ===== 헤더 배너 (애니메이션) ===== -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:1a2980,100:26d0ce&height=200&section=header&text=Jinwoo%20Kim&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Cloud%20Infrastructure%20Engineer&descSize=20&descAlignY=60"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:1a2980,100:26d0ce&height=200&section=header&text=Jinwoo%20Kim&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Cloud%20Engineer%20%C2%B7%20IaC%20%C2%B7%20Kubernetes%20%C2%B7%20Cloud%20Security&descSize=18&descAlignY=60"/>
 
 <!-- ===== 타이핑 애니메이션 ===== -->
 <p align="center">
   <a href="https://github.com/jinuuuKim">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=26D0CE&center=true&vCenter=true&width=600&lines=Infrastructure+as+Code+%E2%9A%99%EF%B8%8F;Multi-Region+Architecture+on+AWS+%E2%98%81%EF%B8%8F;Kubernetes+%26+GitOps+Enthusiast+%F0%9F%9A%A2;Reliability+by+Design+%F0%9F%9B%A1%EF%B8%8F" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=26D0CE&center=true&vCenter=true&width=600&lines=Infrastructure+as+Code+%E2%9A%99%EF%B8%8F;Multi-Region+Architecture+on+AWS+%E2%98%81%EF%B8%8F;Kubernetes+%26+GitOps+%F0%9F%9A%A2;Multi-Cloud+Security+%26+Agentic+AI+%F0%9F%A4%96" alt="Typing SVG" />
   </a>
 </p>
 
-<!-- ===== 방문자 수 / 연락처 ===== -->
+<!-- ===== 링크 ===== -->
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=jinuuuKim&label=Profile%20views&color=26d0ce&style=flat-square" alt="profile views" />
   <a href="https://jinuuukim.github.io/portfolio/">
-    <img src="https://img.shields.io/badge/Portfolio-jinuuukim.github.io-26D0CE?style=flat-square&logo=googlechrome&logoColor=white"/>
+    <img src="https://img.shields.io/badge/PORTFOLIO-26D0CE?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=1A2980"/>
   </a>
   <a href="mailto:kkjjww1503@naver.com">
-    <img src="https://img.shields.io/badge/Email-kkjjww1503@naver.com-03C75A?style=flat-square&logo=naver&logoColor=white"/>
+    <img src="https://img.shields.io/badge/EMAIL-03C75A?style=for-the-badge&logo=naver&logoColor=white&labelColor=1A2980"/>
   </a>
+  <a href="https://github.com/jinuuuKim">
+    <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=1A2980"/>
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=jinuuuKim&label=Profile+views&color=1a2980&style=flat-square" alt="profile views" />
 </p>
 
 ---
@@ -25,18 +31,61 @@
 
 ```yaml
 name: 김진우 (Jinwoo Kim)
-role: Cloud Infrastructure Engineer
+role: Cloud Engineer (신입 · 2026.08 졸업)
 focus:
-  - "AWS 인프라를 Terraform IaC로 설계·구축"
-  - "멀티 리전 아키텍처 / EKS 운영 / GitOps"
-  - "보안 자동화 (OIDC·IRSA·KMS) 및 CI/CD 파이프라인"
+  - "AWS 인프라를 Terraform IaC로 설계·구축 — 멀티 리전 · EKS · GitOps"
+  - "AWS·Azure에 흩어진 보안 신호 통합과 Agentic AI 기반 위험 판정"
+  - "키리스 인증(OIDC·IRSA) · 시크릿 관리 · 분산 추적까지 운영에 필요한 뒷단"
 philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계한 인프라"
 ```
 
 - ☁️ AWS 위에서 **재현 가능하고(reproducible) 장애에 강한** 인프라를 코드로 정의합니다.
 - 🔐 IAM Access Key 없이 **OIDC + IRSA + KMS** 조합으로 Credential-less 보안을 구현합니다.
-- 🧩 단일 추천이 아닌 **트레이드오프 기반의 아키텍처 의사결정**을 지향합니다.
+- 🤖 두 클라우드에 흩어진 보안 신호를 하나로 모으고, **LLM 에이전트가 스스로 증거를 수집해 판정**하도록 만들었습니다.
 - 📈 만든 것은 실제로 배포해 검증하고, 판단 근거를 문서로 남깁니다.
+
+<br>
+
+<table>
+  <tr>
+    <th width="120"></th>
+    <th width="330">🛡️ CNAPP-Agentic</th>
+    <th width="330">📦 StockOps</th>
+  </tr>
+  <tr>
+    <td align="center"><b>한 줄</b></td>
+    <td>멀티클라우드 보안 신호를 통합하고 AI가 스스로 증거를 수집해 판정</td>
+    <td>서울·오하이오 두 리전 EKS를 Terraform으로 세운 ERP/WMS 인프라</td>
+  </tr>
+  <tr>
+    <td align="center"><b>기간 · 인원</b></td>
+    <td>2026.06~07 (5주) · 2인</td>
+    <td>2026.03~06 (3개월) · 4인</td>
+  </tr>
+  <tr>
+    <td align="center"><b>담당</b></td>
+    <td>정규화 · 엔진 · 상관 · RAG · 관측</td>
+    <td>인프라 설계·구축 · CI/CD</td>
+  </tr>
+  <tr>
+    <td align="center"><b>검증</b></td>
+    <td>실 스캔 <b>432건</b> · 공격 경로 <b>3개</b> · AI 미조사 <b>0건</b></td>
+    <td>운영 파드 <b>5→3</b> · State 재현 · 장기 키 <b>0개</b></td>
+  </tr>
+  <tr>
+    <td align="center"><b>보기</b></td>
+    <td>
+      <a href="https://jinuuukim.github.io/portfolio/cnapp/">상세</a> ·
+      <a href="https://github.com/jun0601/cnapp-agentic">코드</a> ·
+      <a href="https://youtu.be/YaPADbf3t94">데모</a>
+    </td>
+    <td>
+      <a href="https://jinuuukim.github.io/portfolio/stockops/">상세</a> ·
+      <a href="https://github.com/jinuuuKim/Stockops-Infra">Infra</a> ·
+      <a href="https://github.com/jinuuuKim/Stockops-GitOps">GitOps</a>
+    </td>
+  </tr>
+</table>
 
 ---
 
