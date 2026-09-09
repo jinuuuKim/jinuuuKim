@@ -283,7 +283,3 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 | 키리스 인증 | 파이프라인·파드 인증에 **장기 액세스 키 0개** — GitHub OIDC · IRSA로 매번 임시 자격증명 발급 |
 
 🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/stockops/) · [Stockops-Infra](https://github.com/jinuuuKim/Stockops-Infra) · [Stockops-GitOps](https://github.com/jinuuuKim/Stockops-GitOps)
-
----
-
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:26d0ce,100:1a2980&height=120&section=footer&text=Infrastructure%20as%20Code,%20Reliability%20by%20Design&fontSize=16&fontColor=ffffff&fontAlignY=70"/>
