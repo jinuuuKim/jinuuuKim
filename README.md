@@ -286,17 +286,4 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 
 ---
 
-## 📊 GitHub
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)"
-      srcset="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=jinuuuKim&theme=github_dark"/>
-    <img width="100%"
-      src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=jinuuuKim&theme=default"/>
-  </picture>
-</p>
-
----
-
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:26d0ce,100:1a2980&height=120&section=footer&text=Infrastructure%20as%20Code,%20Reliability%20by%20Design&fontSize=16&fontColor=ffffff&fontAlignY=70"/>
