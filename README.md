@@ -175,6 +175,60 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 
 ---
 
+### 📦 [StockOps](https://github.com/jinuuuKim/Stockops-Infra) — 멀티 리전 ERP/WMS 클라우드 인프라
+
+<p>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white"/>
+  <img src="https://img.shields.io/badge/EKS-FF9900?style=flat-square&logo=amazoneks&logoColor=white"/>
+  <img src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Karpenter-2C8EBB?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
+</p>
+
+> K-Food 수출 기업 시나리오 기반의 AWS 멀티 리전 인프라. 서울·오하이오 2개 리전을 Terraform IaC로 전 구간 자동화. 평시에는 Global Accelerator 지연 라우팅으로 두 리전이 함께 트래픽을 받고, 리전 장애 시 헬스체크로 전환한다.
+
+`2026.03~06 (3개월)` · `4인` · 담당: 인프라 설계·구축 · CI/CD
+
+**아키텍처 핵심 설계**
+
+```
+[정적 트래픽]  siseon.live / app.siseon.live
+                    └─ CloudFront (OAC) ─→ S3
+                              
+[동적 트래픽]  api.siseon.live
+                    └─ Global Accelerator (지연 라우팅 + 자동 페일오버)
+                         ├─ 서울 ALB → EKS (api-server / ai-module)
+                         └─ 오하이오 ALB → EKS (api-server / ai-module)
+
+[IoT 파이프라인] 온프레미스 센서 → Mosquitto Bridge (TLS:8883)
+                    └─ AWS IoT Core
+                         ├─ SQS → api-server → WebSocket 실시간 Push
+                         └─ Kinesis Firehose → S3 (GZIP) → Athena
+```
+
+| 영역 | 구현 내용 |
+|------|-----------|
+| 🌏 **Multi-Region IaC** | Terraform state를 `seoul / ohio / global / peering` 4개 레이어로 분리, KMS 암호화 S3 원격 백엔드 |
+| 🚢 **Kubernetes** | EKS v1.30 + Karpenter(Spot-preferred) — 파드는 HPA, 노드는 Karpenter로 2단 오토스케일링 |
+| 🔄 **GitOps CI/CD** | GitHub Actions OIDC(키리스) → ECR 양 리전 직접 Push → ArgoCD 자동 Sync (Kustomize overlay) |
+| 🔐 **Credential-less 보안** | OIDC(GitHub Actions) + IRSA(Pod) + KMS(Terraform state) + ESO(Secrets Manager 1h 동기화) + WAF |
+| 📡 **IoT Pipeline** | IoT Core → SQS(실시간) / Kinesis Firehose → S3/GZIP(이력) → Athena 분석 이중 파이프라인 |
+| 🌐 **트래픽 분리** | 정적(CloudFront+S3) / 동적(Global Accelerator) 공존 구조로 엣지 캐시 최적화 |
+| 🗄️ **DB HA** | RDS PostgreSQL Multi-AZ(1차) + Cross-Region Read Replica(2차) 2단계 방어 |
+
+**검증 결과**
+
+| 지표 | 결과 |
+|------|------|
+| 운영 파드 | 정적·동적 분리로 **5개 → 3개**(40% 감축) |
+| State 재현 | 4개 State 전부 **삭제 후 재적용해 동일 구성 복원** |
+| 키리스 인증 | 파이프라인·파드 인증에 **장기 액세스 키 0개** — GitHub OIDC · IRSA로 매번 임시 자격증명 발급 |
+
+🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/stockops/) · [데모 영상 (1분 6초)](https://youtu.be/ywCNuOcv3cM) · [Stockops-Infra](https://github.com/jinuuuKim/Stockops-Infra) · [Stockops-GitOps](https://github.com/jinuuuKim/Stockops-GitOps)
+
+---
+
 ### 🛡️ [cnapp-agentic](https://github.com/jun0601/cnapp-agentic) — Agentic AI 기반 멀티클라우드 CNAPP 보안 플랫폼
 
 <p>
@@ -232,54 +286,54 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 
 ---
 
-### 📦 [StockOps](https://github.com/jinuuuKim/Stockops-Infra) — 멀티 리전 ERP/WMS 클라우드 인프라
+### 🌐 [AWS 하이브리드 멀티리전](https://github.com/jinuuuKim/AWS_Personal_Project) — 온프레미스를 가정한 IDC 연동 아키텍처
 
 <p>
   <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white"/>
-  <img src="https://img.shields.io/badge/EKS-FF9900?style=flat-square&logo=amazoneks&logoColor=white"/>
-  <img src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Karpenter-2C8EBB?style=flat-square&logo=amazonaws&logoColor=white"/>
-  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CloudFormation-FF4F8B?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Transit_Gateway-FF9900?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Site--to--Site_VPN-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Route_53-8C4FFF?style=flat-square&logo=amazonroute53&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black"/>
 </p>
 
-> K-Food 수출 기업 시나리오 기반의 AWS 멀티 리전 인프라. 서울·오하이오 2개 리전을 Terraform IaC로 전 구간 자동화. 평시에는 Global Accelerator 지연 라우팅으로 두 리전이 함께 트래픽을 받고, 리전 장애 시 헬스체크로 전환한다.
+> 서울·싱가포르 두 리전과 **온프레미스를 가정한 별도 IDC VPC** 를 Site-to-Site VPN으로 잇고, 네트워크·DNS·VPN을 포함한 환경 전체를 CloudFormation으로 코드화한 1인 프로젝트. 장애를 직접 주입해 리전 전환과 복구까지 확인했다.
 
-`2026.03~06 (3개월)` · `4인` · 담당: 인프라 설계·구축 · CI/CD
+`2026.03 (1주)` · `1인` · 혼자 구성
 
 **아키텍처 핵심 설계**
 
 ```
-[정적 트래픽]  siseon.live / app.siseon.live
-                    └─ CloudFront (OAC) ─→ S3
-                              
-[동적 트래픽]  api.siseon.live
-                    └─ Global Accelerator (지연 라우팅 + 자동 페일오버)
-                         ├─ 서울 ALB → EKS (api-server / ai-module)
-                         └─ 오하이오 ALB → EKS (api-server / ai-module)
+[글로벌 진입]  Global Accelerator (지연 기반 라우팅 + 헬스체크 전환)
+                    ├─ 서울 VPC 10.1.0.0/16   ALB + 웹서버 2대 · NAT Instance 2대(AZ 분리)
+                    └─ 싱가포르 VPC 10.3.0.0/16  웹서버 1대 · NAT Instance 1대
 
-[IoT 파이프라인] 온프레미스 센서 → Mosquitto Bridge (TLS:8883)
-                    └─ AWS IoT Core
-                         ├─ SQS → api-server → WebSocket 실시간 Push
-                         └─ Kinesis Firehose → S3 (GZIP) → Athena
+[리전 간]      Transit Gateway x2 + TGW Peering
+[하이브리드]    Customer Gateway(EC2) ─ Site-to-Site VPN ─┬─ 서울 IDC 10.2.0.0/16
+                                                        └─ 싱가포르 IDC 10.4.0.0/16
+
+[DNS]   AWS 내부 도메인  → Route 53 프라이빗 호스팅 영역
+        IDC 내부 도메인  → bind9
+        교차 조회        → Route 53 Resolver 인/아웃바운드 EP + 포워딩 규칙 / bind9 forward zone
+
+[데이터] 서울 IDC MySQL MASTER ─(VPN·TGW)─→ 싱가포르 IDC SLAVE 복제
 ```
 
 | 영역 | 구현 내용 |
 |------|-----------|
-| 🌏 **Multi-Region IaC** | Terraform state를 `seoul / ohio / global / peering` 4개 레이어로 분리, KMS 암호화 S3 원격 백엔드 |
-| 🚢 **Kubernetes** | EKS v1.30 + Karpenter(Spot-preferred) — 파드는 HPA, 노드는 Karpenter로 2단 오토스케일링 |
-| 🔄 **GitOps CI/CD** | GitHub Actions OIDC(키리스) → ECR 양 리전 직접 Push → ArgoCD 자동 Sync (Kustomize overlay) |
-| 🔐 **Credential-less 보안** | OIDC(GitHub Actions) + IRSA(Pod) + KMS(Terraform state) + ESO(Secrets Manager 1h 동기화) + WAF |
-| 📡 **IoT Pipeline** | IoT Core → SQS(실시간) / Kinesis Firehose → S3/GZIP(이력) → Athena 분석 이중 파이프라인 |
-| 🌐 **트래픽 분리** | 정적(CloudFront+S3) / 동적(Global Accelerator) 공존 구조로 엣지 캐시 최적화 |
-| 🗄️ **DB HA** | RDS PostgreSQL Multi-AZ(1차) + Cross-Region Read Replica(2차) 2단계 방어 |
+| 🧱 **전 구간 IaC** | VPC 2종(AWS·IDC)·서브넷·라우팅·ALB·Route 53 호스팅 영역과 Resolver 규칙·TGW·Customer Gateway·VPN 연결까지 **리전별 CloudFormation 템플릿 하나**에 — VPN과 DNS 포워딩도 코드 |
+| 🌍 **하이브리드 DNS** | 환경 성격에 맞춰 Route 53 / bind9로 나누되, **나누기만 하면 서로를 못 찾으므로** Resolver 포워딩 규칙과 bind9 forward zone을 양쪽에 걸어 4개 내부 도메인이 리전·환경을 가로질러 양방향 조회 |
+| 💰 **NAT Instance** | 관리형 게이트웨이는 시간 요금에 데이터 처리 요금이 더해지는 구조이고 리전이 둘이라 **비용을 고려해 인스턴스로** — 출발지·대상 확인 해제 + IP 포워딩 + `iptables MASQUERADE` 를 부팅 시 적용 |
+| 🔁 **트래픽 계층 전환** | 웹서버는 멀쩡한데 DB에 못 닿는 **"정상으로 보이지만 쓸 수 없는 상태"** 가 가장 곤란하다. 1분 주기 크론으로 IDC DB 연결을 확인해 닿지 않으면 웹 데몬을 내리고, 헬스체크에서 빠지면 GA가 정상 리전으로 보내도록 구성 |
 
 **검증 결과**
 
 | 지표 | 결과 |
 |------|------|
-| 운영 파드 | 정적·동적 분리로 **5개 → 3개**(40% 감축) |
-| State 재현 | 4개 State 전부 **삭제 후 재적용해 동일 구성 복원** |
-| 키리스 인증 | 파이프라인·파드 인증에 **장기 액세스 키 0개** — GitHub OIDC · IRSA로 매번 임시 자격증명 발급 |
+| VPN · 내부 통신 | 터널 4개 수립 확인, `nslookup`·`ping` 으로 리전 ↔ IDC 내부 도메인 조회·도달 확인 |
+| DB 복제 | `SHOW REPLICA STATUS` IO/SQL 모두 Running, 한쪽 수정이 양쪽에 반영되는 것까지 확인 |
+| **장애 전환** | IDC DB 중지 → 해당 리전 Unhealthy → 반대 리전 전환 → DB 복구 → 원복까지 **양방향으로 수행** |
 
-🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/stockops/) · [Stockops-Infra](https://github.com/jinuuuKim/Stockops-Infra) · [Stockops-GitOps](https://github.com/jinuuuKim/Stockops-GitOps)
+> ⚠️ **DB 페일오버가 아니다.** SLAVE 승격 로직은 넣지 않았고, 층위는 데이터베이스가 아니라 **트래픽 라우팅** 이다 — "DB에 닿지 않는 리전으로는 사용자를 보내지 않는다"까지가 이 구성이 하는 일이다.
+
+🔗 [상세 페이지](https://jinuuukim.github.io/portfolio/personal/) · [상세 자료 22p](https://jinuuukim.github.io/portfolio/pdf/AWS-Personal.pdf) · [AWS_Personal_Project](https://github.com/jinuuuKim/AWS_Personal_Project)
