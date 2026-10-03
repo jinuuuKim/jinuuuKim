@@ -224,7 +224,7 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
 |------|------|
 | 통합 finding | 스캐너 6종 실 스캔 **432건**(open 32 · 준수 63 · 노이즈 억제 337) |
 | 공격 경로 | **3개** 도출 — 공개 S3 조치를 승인하자 실시간 소멸(3→1) |
-| AI 조사 | Triage 통과 24건 **전부 조사 완료**(미조사 0건), 1회 조사 약 100원 |
+| AI 조사 | Triage 통과 24건 **전부 조사 완료**(미조사 0건) — Triage 게이트로 조사 대상을 걸러 비용 통제 |
 
 **담당 영역**: 추론 엔진(Hypothesis·Reasoning·Orchestrator) · 워크로드/CIEM 스캐너(Trivy·kube-bench·Entra ID) · Attack-Path 상관 로직 · RAG 검색·답변 생성 · 운영 관측(Grafana·CloudWatch·Teams 알림) · Azure/Entra 테넌트 구축
 
@@ -243,7 +243,7 @@ philosophy: "동작하는 인프라가 아니라, 트레이드오프를 설계�
   <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
 </p>
 
-> K-Food 수출 기업 시나리오 기반의 AWS 멀티 리전 인프라. 서울(Primary) · 오하이오(DR) 2개 리전을 Terraform IaC로 전 구간 자동화.
+> K-Food 수출 기업 시나리오 기반의 AWS 멀티 리전 인프라. 서울·오하이오 2개 리전을 Terraform IaC로 전 구간 자동화. 평시에는 Global Accelerator 지연 라우팅으로 두 리전이 함께 트래픽을 받고, 리전 장애 시 헬스체크로 전환한다.
 
 `2026.03~06 (3개월)` · `4인` · 담당: 인프라 설계·구축 · CI/CD
 
